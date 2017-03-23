@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.IO;
 using System.Reflection;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
-public class TidyCodeHelper : ScriptableObject {
+public class TidyCodeHelper : ScriptableObject
+{
 
     [MenuItem("Tidy Code Helper/Find Empty functions")]
     private static void FindEmptyFunctions()
