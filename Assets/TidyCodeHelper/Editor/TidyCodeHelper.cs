@@ -7,11 +7,10 @@ using System.Text.RegularExpressions;
 
 public class TidyCodeHelper : ScriptableObject
 {
-
     [MenuItem("Tidy Code Helper/Find Empty functions")]
     private static void FindEmptyFunctions()
     {
-        FindAndDisplayUsingRegex(
+        FindAndDisplayRegexMatches(
             @"(?<!override\s)(?<!override\sprivate\s)(?<!override\sprotected\s)(?<!override\spublic\s)(?<!virtual\s)(?<!virtual\sprivate\s)(?<!virtual\sprotected\s)(?<!virtual\spublic\s)((private\svoid\s?|public\svoid\s?|void))\s+(Awake|Start|OnEnable|Update|FixedUpdate|LateUpdate|OnGUI|OnPostRender|OnPreCull|OnPreRender|OnPostRender|OnRenderObject|OnTriggerEnter|OnTriggerEnter2D|OnTriggerExit|OnTriggerExit2D|OnTriggerStay|OnTriggerStay2D|OnCollisionEnter|OnCollisionEnter2D|OnCollisionExit|OnCollisionExit2D|OnCollisionStay|OnCollisionStay2D|OnMouseDown|OnMouseDrag|OnMouseEnter|OnMouseOver|OnMouseExit|OnMouseUp|OnBecameVisible|OnBecameInvisible|OnDisable|OnDestroy|OnApplicationQuit|OnApplicationPause|OnApplicationFocus)\s*?\(.*\)\s*\{\n*?\s*?\}"
         );
     }
@@ -19,12 +18,12 @@ public class TidyCodeHelper : ScriptableObject
     [MenuItem("Tidy Code Helper/Find Heavy Function Calls")]
     private static void FindHeavyFunctionCalls()
     {
-        FindAndDisplayUsingRegex(
+        FindAndDisplayRegexMatches(
             @"(Update|FixedUpdate|LateUpdate|OnGUI|OnPostRender|OnPreCull|OnPreRender|OnPostRender|OnRenderObject|OnTriggerStay|OnTriggerStay2D|OnCollisionStay|OnCollisionStay2D|OnMouseDown|OnMouseDrag|OnMouseEnter|OnMouseOver|OnMouseExit|OnMouseUp|OnBecameVisible|OnBecameInvisible)+\s*\(.*\)\s*\{\s*(\w*.*\s*(GetComponents|GetComponentInChildren|GetComponentsInChildren|GetComponentInParent|GetComponentsInParent|GetComponent|FindObjectOfType|FindObjectsOfType|FindObjectsOfTypeAll|FindObjectsOfTypeIncludingAssets|FindSceneObjectsOfType|Find|SendMessage|SendMessageUpwards)+)\s*(\(|\<)+(\s*\w.*\s*)*\s*\}"
         );
     }
 
-    private static void FindAndDisplayUsingRegex(string regexPattern)
+    private static void FindAndDisplayRegexMatches(string regexPattern)
     {
         const string removeLineBreaksPattern = @"/(\r\n)+|\r+|\n+|\t+";
         const int lineNumber = 0;
